@@ -21,7 +21,7 @@ class AuthService{
             where: { id: id }
         });
     };
-    findUserByEmail = async(email:string)=>{
+    static findUserByEmail = async(email:string)=>{
         return await prisma.user.findUnique({
             where: { email: email }
         }); 
