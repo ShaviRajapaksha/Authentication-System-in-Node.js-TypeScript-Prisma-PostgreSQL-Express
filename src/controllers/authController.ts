@@ -1,4 +1,4 @@
-import AuthService from "../services/authServices.js";
+import AuthService from "../services/authServices";
 import type { Request, Response } from "express";
 
 class AuthController {
@@ -8,8 +8,7 @@ class AuthController {
             const existingUser = await AuthService.findUserByEmail(email);
             if (existingUser) {
                 return res.status(400).json({ message: 'User already exists' });
-                const user = await AuthService.registerUser(username, email, password);
-                return res.status(201).json(user);
+
             }
             const newUser = await AuthService.registerUser(username, email, password);
             res.status(201).json(newUser);
