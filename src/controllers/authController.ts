@@ -24,7 +24,18 @@ class AuthController {
         } catch(error) {
             res.status(400).json({message:'Error logging in user', error});
         }
-
+    }
+    static getUserById = async (req: Request, res: Response) => {
+        try{
+            const userId = parseInt(req.params.id);
+            const foundUser = await AuthService.findUserById(userId);
+            if (!foundUser) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            return res.status(200).json(foundUser);
+        } catch(error) {
+            res.status(500).json({message:'Error fetching user', error});
+        }
     }
 }
 export default AuthController;
